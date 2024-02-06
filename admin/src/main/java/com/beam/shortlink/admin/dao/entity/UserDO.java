@@ -1,9 +1,11 @@
 package com.beam.shortlink.admin.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.util.Date;
 
+@Data
 @TableName("t_user")
 public class UserDO {
     private static final long serialVersionUID = 1L;
