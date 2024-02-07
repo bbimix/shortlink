@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    username: rppt
+    username: root
     password: root
-    url: jdbc:mysql://127.0.0.1:3306/link?characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3307/shortlink?characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       connection-test-query: select 1
