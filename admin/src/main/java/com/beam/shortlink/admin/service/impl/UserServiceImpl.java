@@ -3,6 +3,8 @@ package com.beam.shortlink.admin.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.beam.shortlink.admin.common.convention.errorcode.BaseErrorCode;
+import com.beam.shortlink.admin.common.convention.exception.ServiceException;
 import com.beam.shortlink.admin.dao.entity.UserDO;
 import com.beam.shortlink.admin.dao.mapper.UserMapper;
 import com.beam.shortlink.admin.dto.resp.UserRespDTO;
@@ -17,6 +19,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         LambdaQueryWrapper<UserDO> queryWrapper = Wrappers.lambdaQuery(UserDO.class)
                 .eq(UserDO::getUsername, Username);
         UserDO userDO = baseMapper.selectOne(queryWrapper);
+        if (userDO == null) {
+            throw new ServiceException(BaseErrorCode.CLIENT_ERROR);
+        }
         UserRespDTO result = new UserRespDTO();
         BeanUtils.copyProperties(userDO, result);
         return result;
